@@ -1,4 +1,15 @@
-- uses: sarisia/actions-status-discord@v1
-  if: always()
-  with:
-    webhook: ${{ secrets.DISCORD_WEBHOOK }}
+name: Discord Notification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send status to Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
